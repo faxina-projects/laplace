@@ -1,7 +1,7 @@
 import { HttpBaseException } from '@/application/shared/http/exceptions';
 
 import { CatchphraseDTO, UpdateCatchphraseDTO } from '../dtos';
-import { CreateCatchphraseException } from '../exceptions';
+import { UpdateCatchphraseException } from '../exceptions';
 import { ICatchphraseRepository } from '../repositories';
 import { ICatchphraseFinderService } from './catchphrase-finder.service.interface';
 import { ICatchphraseUpdaterService } from './catchphrase-updater.service.interface';
@@ -30,7 +30,7 @@ class CatchphraseUpdaterService implements ICatchphraseUpdaterService {
         throw error;
       }
 
-      throw new CreateCatchphraseException(error.message, error, {
+      throw new UpdateCatchphraseException(error.message, error, {
         catchphraseData,
       });
     }

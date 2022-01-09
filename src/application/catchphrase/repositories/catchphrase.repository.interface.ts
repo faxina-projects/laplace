@@ -1,8 +1,4 @@
-import {
-  CatchphraseDTO,
-  CreateCatchphraseDTO,
-  UpdateCatchphraseDTO,
-} from '../dtos';
+import { CatchphraseDTO, CreateCatchphraseDTO } from '../dtos';
 
 interface ICatchphraseRepository {
   insert: (catchphraseData: CreateCatchphraseDTO) => Promise<CatchphraseDTO>;
@@ -13,7 +9,7 @@ interface ICatchphraseRepository {
 
   find: () => Promise<CatchphraseDTO[]>;
 
-  // delete: (id: string) => Promise<CatchphraseDTO>;
+  delete: (id: string) => Promise<void>;
 }
 
 export { ICatchphraseRepository };

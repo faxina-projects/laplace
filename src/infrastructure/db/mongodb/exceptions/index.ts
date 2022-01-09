@@ -1,3 +1,4 @@
+export * from './delete-catchphrase.exception';
 export * from './find-catchphrase-by-id.exception';
 export * from './find-catchphrases.exception';
 export * from './insert-catchphrase.exception';

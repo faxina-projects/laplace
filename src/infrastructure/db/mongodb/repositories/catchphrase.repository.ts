@@ -5,6 +5,7 @@ import {
 import { ICatchphraseRepository } from '@/application/catchphrase/repositories';
 
 import {
+  DeleteCatchphraseException,
   FindCatchphraseByIdException,
   FindCatchphrasesException,
   InsertCatchphraseException,
@@ -62,6 +63,14 @@ class CatchphraseRepository implements ICatchphraseRepository {
       );
     } catch (error: any) {
       throw new FindCatchphrasesException(error.message, error);
+    }
+  };
+
+  delete = async (id: string): Promise<void> => {
+    try {
+      await CatchPhrase.remove({ id });
+    } catch (error: any) {
+      throw new DeleteCatchphraseException(error.message, error, { id });
     }
   };
 }

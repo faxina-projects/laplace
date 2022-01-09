@@ -2,6 +2,7 @@ import helmet from 'helmet';
 
 import {
   createCatchphraseController,
+  deleteCatchphraseController,
   findCatchphraseByIdController,
   findCatchphrasesController,
   healthCheckController,
@@ -44,6 +45,7 @@ class App {
     this.app.use('/', findCatchphraseByIdController.router);
     this.app.use('/', findCatchphrasesController.router);
     this.app.use('/', updateCatchphraseController.router);
+    this.app.use('/', deleteCatchphraseController.router);
   };
 }
 
