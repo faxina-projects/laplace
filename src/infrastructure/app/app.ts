@@ -1,6 +1,9 @@
 import helmet from 'helmet';
 
-import { healthCheckController } from '@/presentation/controllers';
+import {
+  catchphraseController,
+  healthCheckController,
+} from '@/presentation/controllers';
 
 import { LoggerMiddleware } from '../logger/middlewares';
 import { Application, json, ServerApp, urlencoded } from './core';
@@ -34,6 +37,7 @@ class App {
 
   private initRoutes = (): void => {
     this.app.use('/', healthCheckController.router);
+    this.app.use('/', catchphraseController.router);
   };
 }
 
