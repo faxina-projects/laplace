@@ -6,7 +6,7 @@ const catchPhraseSchema = new Schema({
   movieName: {
     type: String,
   },
-  catchPhrase: {
+  catchphrase: {
     type: String,
   },
   movieContext: {

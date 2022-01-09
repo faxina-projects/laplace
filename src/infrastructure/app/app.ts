@@ -5,6 +5,7 @@ import {
   findCatchphraseByIdController,
   findCatchphrasesController,
   healthCheckController,
+  updateCatchphraseController,
 } from '@/presentation/controllers';
 
 import { LoggerMiddleware } from '../logger/middlewares';
@@ -42,6 +43,7 @@ class App {
     this.app.use('/', createCatchphraseController.router);
     this.app.use('/', findCatchphraseByIdController.router);
     this.app.use('/', findCatchphrasesController.router);
+    this.app.use('/', updateCatchphraseController.router);
   };
 }
 

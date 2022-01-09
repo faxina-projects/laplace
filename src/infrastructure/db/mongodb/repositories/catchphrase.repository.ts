@@ -22,7 +22,21 @@ class CatchphraseRepository implements ICatchphraseRepository {
       const newCatchphrase = await catchphrase.save();
       return CatchphraseMapper.toDTO(newCatchphrase);
     } catch (error: any) {
-      console.log(error);
+      throw new InsertCatchphraseException(
+        error.message,
+        error,
+        catchphraseData,
+      );
+    }
+  };
+
+  update = async (catchphraseData: CatchphraseDTO): Promise<CatchphraseDTO> => {
+    try {
+      const { id, ...restData } = catchphraseData;
+      await CatchPhrase.updateOne({ id }, restData);
+
+      return catchphraseData;
+    } catch (error: any) {
       throw new InsertCatchphraseException(
         error.message,
         error,
