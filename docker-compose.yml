@@ -1,0 +1,23 @@
+version: '3.5'
+services:
+  newton-api:
+    container_name: newton-api
+    build: .
+    ports:
+      - ${SERVER_PORT}:${SERVER_PORT}
+    networks:
+      - newton-network
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    restart: always
+  newton-redis-server:
+    container_name: newton-redis-server
+    image: 'redis:6.2-alpine'
+    networks:
+      - newton-network
+    ports:
+      - ${REDIS_PORT}:${REDIS_PORT}
+networks:
+  newton-network:
+    driver: bridge
