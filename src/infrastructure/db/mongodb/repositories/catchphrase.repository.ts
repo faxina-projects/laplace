@@ -4,7 +4,11 @@ import {
 } from '@/application/catchphrase/dtos';
 import { ICatchphraseRepository } from '@/application/catchphrase/repositories';
 
-import { InsertCatchphraseException } from '../exceptions';
+import {
+  FindCatchphraseByIdException,
+  FindCatchphrasesException,
+  InsertCatchphraseException,
+} from '../exceptions';
 import { CatchphraseMapper } from '../mapper';
 import { CatchPhrase } from '../models';
 
@@ -24,6 +28,26 @@ class CatchphraseRepository implements ICatchphraseRepository {
         error,
         catchphraseData,
       );
+    }
+  };
+
+  findById = async (id: string): Promise<CatchphraseDTO | undefined> => {
+    try {
+      const catchphrase = await CatchPhrase.findById(id);
+      return catchphrase ? CatchphraseMapper.toDTO(catchphrase) : undefined;
+    } catch (error: any) {
+      throw new FindCatchphraseByIdException(error.message, error, { id });
+    }
+  };
+
+  find = async (): Promise<CatchphraseDTO[]> => {
+    try {
+      const catchphrases = await CatchPhrase.find();
+      return catchphrases.map((catchphrase) =>
+        CatchphraseMapper.toDTO(catchphrase),
+      );
+    } catch (error: any) {
+      throw new FindCatchphrasesException(error.message, error);
     }
   };
 }

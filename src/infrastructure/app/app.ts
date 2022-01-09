@@ -1,7 +1,9 @@
 import helmet from 'helmet';
 
 import {
-  catchphraseController,
+  createCatchphraseController,
+  findCatchphraseByIdController,
+  findCatchphrasesController,
   healthCheckController,
 } from '@/presentation/controllers';
 
@@ -37,7 +39,9 @@ class App {
 
   private initRoutes = (): void => {
     this.app.use('/', healthCheckController.router);
-    this.app.use('/', catchphraseController.router);
+    this.app.use('/', createCatchphraseController.router);
+    this.app.use('/', findCatchphraseByIdController.router);
+    this.app.use('/', findCatchphrasesController.router);
   };
 }
 

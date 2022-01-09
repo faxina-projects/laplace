@@ -6,13 +6,13 @@ import { HttpCreatedResponseDTO } from '@/application/shared/http/dtos';
 import { IRequest, NextFunction, Response } from '@/infrastructure/app/core';
 import { catchphraseRepository } from '@/infrastructure/db/mongodb/repositories';
 
-import { BaseController } from '../base.controller';
+import { CatchphraseController } from './catchphrase.controller';
 
-class CatchphraseController extends BaseController {
+class CreateCatchphraseController extends CatchphraseController {
   constructor(
     private readonly catchphraseCreatorService: ICatchphraseCreatorService,
   ) {
-    super('/catchphrase');
+    super();
 
     this.initializeRoutes();
   }
@@ -45,8 +45,8 @@ const catchphraseCreatorService = new CatchphraseCreatorService(
   catchphraseRepository,
 );
 
-const catchphraseController = new CatchphraseController(
+const createCatchphraseController = new CreateCatchphraseController(
   catchphraseCreatorService,
 );
 
-export { catchphraseController };
+export { createCatchphraseController };
